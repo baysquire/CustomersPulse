@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>CustomersPulse - AI-Powered Customer Experience</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="Treat every customer like your only customer with AI-powered emotional intelligence">
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<style>
+		:root {
+			--primary: #008751;   /* Nigerian Green */
+			--secondary: #F2A900; /* African Gold */
+			--accent: #E31B23;    /* Vibrant Red */
+		}
+		#header h1 { font-size: 3.5rem; }
+		.countdown { 
+			display: flex; 
+			justify-content: center;
+			gap: 1.5rem;
+			margin: 2rem 0;
+			font-family: 'Source Sans Pro', sans-serif;
+		}
+		.countdown-box {
+			background: rgba(255,255,255,0.1);
+			border-radius: 8px;
+			padding: 1rem;
+			min-width: 80px;
+		}
+		.countdown-number {
+			font-size: 2.5rem;
+			font-weight: 700;
+			display: block;
+		}
+		.countdown-label {
+			font-size: 0.9rem;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+		.partners {
+			display: flex;
+			justify-content: center;
+			gap: 2rem;
+			flex-wrap: wrap;
+			margin: 2rem 0;
+			opacity: 0.8;
+		}
+		.partner-logo {
+			height: 40px;
+			filter: grayscale(100%) brightness(200%);
+		}
+		.whatsapp-signup {
+			background-color: #25D366;
+			border-color: #25D366;
+			margin-top: 1rem;
+		}
+		.whatsapp-signup:hover { background-color: #128C7E; }
+	</style>
+</head>
+<body class="is-preload">
+
+	<!-- Header -->
+	<header id="header">
+		<h1>Customers<span style="color: var(--secondary)">Pulse</span></h1>
+		<p>Treat every customer like your <strong>only customer</strong><br>
+		Africa's first AI-powered emotional intelligence platform for businesses</p>
+		
+		<!-- Countdown Timer -->
+		<div class="countdown">
+			<div class="countdown-box">
+				<span class="countdown-number" id="days">00</span>
+				<span class="countdown-label">Days</span>
+			</div>
+			<div class="countdown-box">
+				<span class="countdown-number" id="hours">00</span>
+				<span class="countdown-label">Hours</span>
+			</div>
+			<div class="countdown-box">
+				<span class="countdown-number" id="minutes">00</span>
+				<span class="countdown-label">Minutes</span>
+			</div>
+			<div class="countdown-box">
+				<span class="countdown-number" id="seconds">00</span>
+				<span class="countdown-label">Seconds</span>
+			</div>
+		</div>
+		
+		<!-- Partner Logos -->
+		<div class="partners">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Flutterwave_logo.svg/320px-Flutterwave_logo.svg.png" alt="Flutterwave" class="partner-logo">
+			<img src="https://logos-download.com/wp-content/uploads/2021/01/Jumia_Logo.png" alt="Jumia" class="partner-logo">
+			<img src="https://www.mtn.com/wp-content/uploads/2020/02/mtn-logo-300x300.png" alt="MTN" class="partner-logo">
+		</div>
+	</header>
+
+	<!-- Signup Form -->
+	<form id="signup-form" method="post" action="#">
+		<input type="email" name="email" id="email" placeholder="Your business email" required />
+		<input type="submit" value="Get Early Access" />
+		<button class="whatsapp-signup" onclick="window.open('https://wa.me/2341234567890?text=I%20want%20early%20access%20to%20CustomersPulse')">
+			<i class="icon brands fa-whatsapp"></i> WhatsApp Signup
+		</button>
+	</form>
+
+	<!-- Benefits Section -->
+	<div style="max-width: 800px; margin: 2rem auto; text-align: center;">
+		<h3>Transform Your Customer Experience</h3>
+		<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 1.5rem;">
+			<div style="flex: 1; min-width: 200px;">
+				<i class="icon solid fa-brain" style="font-size: 2.5rem; color: var(--secondary);"></i>
+				<h4>Emotional AI</h4>
+				<p>Detect customer sentiment in Yoruba, Igbo, and Pidgin</p>
+			</div>
+			<div style="flex: 1; min-width: 200px;">
+				<i class="icon solid fa-mobile-alt" style="font-size: 2.5rem; color: var(--secondary);"></i>
+				<h4>Offline Access</h4>
+				<p>USSD/SMS support for low-internet areas</p>
+			</div>
+			<div style="flex: 1; min-width: 200px;">
+				<i class="icon solid fa-gem" style="font-size: 2.5rem; color: var(--secondary);"></i>
+				<h4>VIP Treatment</h4>
+				<p>Automatically identify and delight high-value customers</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<ul class="icons">
+			<li><a href="https://twitter.com/CustomersPulse" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="https://instagram.com/CustomersPulse" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+			<li><a href="https://linkedin.com/company/CustomersPulse" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+			<li><a href="mailto:hello@customerspulse.africa" class="icon fa-envelope"><span class="label">Email</span></a></li>
+			<li><a href="https://wa.me/2341234567890" class="icon brands fa-whatsapp"><span class="label">WhatsApp</span></a></li>
+		</ul>
+		<ul class="copyright">
+			<li>&copy; CustomersPulse 2024. All rights reserved.</li>
+			<li>Lagos, Nigeria</li>
+		</ul>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/main.js"></script>
+	<script>
+		// Countdown Timer
+		const launchDate = new Date("Dec 1, 2024 00:00:00").getTime();
+		
+		const timer = setInterval(function() {
+			const now = new Date().getTime();
+			const distance = launchDate - now;
+			
+			const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			
+			document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+			document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+			document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+			document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+			
+			if (distance < 0) {
+				clearInterval(timer);
+				document.getElementById("countdown").innerHTML = "<h3>We've Launched!</h3>";
+			}
+		}, 1000);
+		
+		// Form Submission
+		document.getElementById('signup-form').addEventListener('submit', function(e) {
+			e.preventDefault();
+			const email = document.getElementById('email').value;
+			
+			// Simple validation
+			if (email.includes('@')) {
+				alert(`Thank you! We've added ${email} to our early access list.`);
+				document.getElementById('email').value = '';
+				
+				// Here you would typically send the data to your backend
+				// Example: fetch('/signup', { method: 'POST', body: JSON.stringify({ email }) })
+			} else {
+				alert('Please enter a valid email address');
+			}
+		});
+	</script>
+</body>
+</html>

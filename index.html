@@ -1,118 +1,116 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>CustomersPulse - Coming Soon</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CustomersPulse - Coming Soon</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
 
-	<!-- Countdown Timer -->
-	<script>
-		window.addEventListener('DOMContentLoaded', () => {
-			const launchDate = new Date("2025-08-15T00:00:00Z").getTime();
-			const timer = document.getElementById("countdown");
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getDatabase, ref, push, set, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
 
-			function updateTimer() {
-				const now = new Date().getTime();
-				const distance = launchDate - now;
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCSM4hX9V8uQIpagZVCPoQEtECedLzrpE",
+      authDomain: "customerspulse-d2209.firebaseapp.com",
+      databaseURL: "https://customerspulse-d2209-default-rtdb.firebaseio.com",
+      projectId: "customerspulse-d2209",
+      storageBucket: "customerspulse-d2209.firebasestorage.app",
+      messagingSenderId: "61177923740",
+      appId: "1:61177923740:web:1d2457d12f8a5e18810559"
+    };
 
-				if (distance < 0) {
-					timer.innerHTML = "We have launched!";
-					return;
-				}
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
 
-				const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-				const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-				const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-				const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    window.submitEmail = async function () {
+      const emailInput = document.getElementById("email");
+      const email = emailInput.value.trim();
 
-				timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-			}
+      if (!email) {
+        alert("Please enter your email.");
+        return;
+      }
 
-			updateTimer();
-			setInterval(updateTimer, 1000);
-		});
-	</script>
+      try {
+        const emailRef = ref(db, "emails");
+        const newEmailRef = push(emailRef);
+        await set(newEmailRef, {
+          email: email,
+          timestamp: Date.now()
+        });
+
+        alert("Thank you! You'll be notified.");
+        emailInput.value = "";
+      } catch (error) {
+        alert("Error submitting email. Please try again.");
+        console.error(error);
+      }
+    };
+  </script>
+
+  <!-- Countdown Timer -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const launchDate = new Date("2025-08-15T00:00:00Z").getTime();
+      const timer = document.getElementById("countdown");
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const distance = launchDate - now;
+
+        if (distance < 0) {
+          timer.innerHTML = "We have launched!";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    });
+  </script>
 </head>
+
 <body class="is-preload">
-	<!-- Header -->
-	<header id="header">
-		<h1>CustomersPulse</h1>
-		<p class="tagline">Making every customer feel like your only customer</p>
-	</header>
+  <!-- Header -->
+  <header id="header">
+    <h1>CustomersPulse</h1>
+    <p class="tagline">Making every customer feel like your only customer</p>
+  </header>
 
-	<!-- Brief About the Solution -->
-	<section style="text-align: center; max-width: 600px; margin: 2em auto;">
-		<h2>Reimagining Customer Experience with Emotional AI</h2>
-		<p>
-			CustomersPulse blends emotional intelligence with AI automation to help businesses engage customers at a deeply personal level—scaling meaningful relationships without high costs. Launching soon in Nigeria.
-		</p>
-	</section>
+  <!-- About -->
+  <section style="text-align: center; max-width: 600px; margin: 2em auto;">
+    <h2>Reimagining Customer Experience with Emotional AI</h2>
+    <p>
+      CustomersPulse blends emotional intelligence with AI automation to help businesses engage customers at a deeply personal level—scaling meaningful relationships without high costs. Launching soon in Nigeria.
+    </p>
+  </section>
 
-	<!-- Countdown Timer -->
-	<section style="text-align: center; font-size: 1.5em;">
-		<p>Launching in:</p>
-		<div id="countdown" style="font-weight: bold; color: #1cb495;"></div>
-	</section>
+  <!-- Countdown -->
+  <section style="text-align: center; font-size: 1.5em;">
+    <p>Launching in:</p>
+    <div id="countdown" style="font-weight: bold; color: #1cb495;"></div>
+  </section>
 
-	<!-- Signup Form -->
-	<section style="text-align: center; margin: 3em auto;">
-		<form id="signup-form" onsubmit="submitEmail(event)">
-			<input type="email" name="email" id="email" placeholder="Enter your email for early access" required />
-			<input type="submit" value="Notify Me" />
-		</form>
-	</section>
+  <!-- Signup Form -->
+  <form id="signup-form" onsubmit="event.preventDefault(); submitEmail();">
+    <input type="email" id="email" placeholder="Enter your email for early access" required />
+    <input type="submit" value="Notify Me" />
+  </form>
 
-	<!-- Footer -->
-	<footer id="footer">
-		<ul class="icons">
-			<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-			<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-			<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-			<li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
-		</ul>
-		<ul class="copyright">
-			<li>&copy; CustomersPulse 2025. All rights reserved.</li>
-		</ul>
-	</footer>
-
-	<!-- Firebase Email Submit Script -->
-	<script type="module">
-		import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-		import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-database.js";
-
-		const firebaseConfig = {
-			apiKey: "AIzaSyBCSM4hX9V8uQIpagZVCPoQEtECedLzrpE",
-			authDomain: "customerspulse-d2209.firebaseapp.com",
-			databaseURL: "https://customerspulse-d2209-default-rtdb.firebaseio.com",
-			projectId: "customerspulse-d2209",
-			storageBucket: "customerspulse-d2209.firebasestorage.app",
-			messagingSenderId: "61177923740",
-			appId: "1:61177923740:web:ee8da1ec51cf05ac810559"
-		};
-
-		const app = initializeApp(firebaseConfig);
-		const database = getDatabase(app);
-
-		window.submitEmail = async (e) => {
-			e.preventDefault();
-			const email = document.getElementById("email").value.trim();
-			if (!email) return;
-			try {
-				await push(ref(database, "early_access"), {
-					email: email,
-					timestamp: Date.now()
-				});
-				alert("Thanks! You'll be notified.");
-				document.getElementById("signup-form").reset();
-			} catch (error) {
-				console.error("Error:", error);
-				alert("Something went wrong. Please try again.");
-			}
-		};
-	</script>
-
-	<!-- Other Scripts -->
-	<script src="assets/js/main.js"></script>
+  <!-- Footer -->
+  <footer id="footer">
+    <ul class="copyright">
+      <li>&copy; CustomersPulse 2025. All rights reserved.</li>
+    </ul>
+  </footer>
 </body>
 </html>
